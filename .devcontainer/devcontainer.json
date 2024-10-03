@@ -1,0 +1,14 @@
+{
+  "name": "Docker Python",
+  "appPort": 3000,
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash"
+  },
+  "extensions": [
+    "ms-python.python",      // Extensión de Python
+    "ms-azuretools.vscode-docker"  // Extensión de Docker
+  ]
+}
