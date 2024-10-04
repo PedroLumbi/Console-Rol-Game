@@ -1,10 +1,10 @@
 import os
-from Game.Characters.Warrior import Warrior
 from Game.Characters.Character import Character
+from Game.Characters.Warrior import Warrior
 
-mi_enemigo = Character("Goblin", 2, 1, 0, 50)
+mi_enemigo = Character("Goblin", 2, 1, 0, 1)
 
-mi_personaje = Warrior("Pedro", 5, 1, 2, 100, 10)
+mi_personaje = Warrior("Pedro", 5, 1, 2, 1, 10)
 
 def character_selection():
   print("Bienvenido!")
