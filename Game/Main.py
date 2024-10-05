@@ -1,13 +1,36 @@
 import os
 from Game.Characters.Character import Character
 from Game.Characters.Warrior import Warrior
+from Game.Characters.Archer import Archer
+from Game.Characters.Wizard import Wizard
 
-mi_enemigo = Character("Goblin", 2, 1, 0, 1)
+main_character = Character("")
 
-mi_personaje = Warrior("Pedro", 5, 1, 2, 1, 10)
+def run():
+  
+  character_selection()
 
 def character_selection():
+  clear()
   print("Bienvenido!")
+  print("(1) Gerrero")
+  print("(2) Arquero")
+  print("(3) Mago")
+  rol = input_int("Eliga una de las opciones de clase para iniciar: ")
+
+  name = input("Escribe el nombre del personaje: ")
+
+  global main_character
+  if rol == 1:
+    main_character = Warrior(name, 5, 0, 2, 3, 5)
+  elif rol == 2:
+    main_character = Archer(name, 7, 0, 1, 2, 10)
+  elif rol == 3:
+    main_character = Wizard(name, 0, 8, 0, 2, 10)
+  else:
+    character_selection()
+
+  main_menu()
 
 def main_menu():
   while True:
@@ -37,13 +60,13 @@ def main_menu():
 
 def case1():
   clear()
-  mi_personaje.atributos()
+  main_character.atributos()
   input()
 
 def case2():
   clear()
-  print("case 2")
-  mi_personaje.atacar(mi_enemigo)
+  enemigo = Character("Goblin", 2, 1, 0, 1)
+  main_character.atacar(enemigo)
   input()
 
 def case3():
@@ -67,10 +90,6 @@ def default_case():
 def combat_menu():
   pass
 
-def run():
-  
-  main_menu()
-
 def input_int(text):
   try:
     option = int(input(text))
@@ -80,6 +99,8 @@ def input_int(text):
 
   if type(option) is int:
     return option
+  else:
+    return 123
 
 def clear():
   os.system('clear')
