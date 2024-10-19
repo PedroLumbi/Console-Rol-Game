@@ -1,5 +1,6 @@
 import os
 from Game.Characters.Character import Character
+from Game.Characters import Enemies
 from Game.Characters.Warrior import Warrior
 from Game.Characters.Archer import Archer
 from Game.Characters.Wizard import Wizard
@@ -7,7 +8,6 @@ from Game.Characters.Wizard import Wizard
 main_character = Character("")
 
 def run():
-  
   character_selection()
 
 def character_selection():
@@ -65,8 +65,7 @@ def case1():
 
 def case2():
   clear()
-  enemigo = Character("Goblin", 2, 1, 0, 1)
-  main_character.atacar(enemigo)
+  combat_menu()
   input()
 
 def case3():
@@ -88,7 +87,20 @@ def default_case():
     print("Caso no reconocido")
 
 def combat_menu():
-  pass
+  enemigo = Enemies.get_enemy()
+  enemigo.atributos()
+
+  print()
+  print("(1) Huir")
+  print("(2) Atacar")
+  if input("Seleccione una opción --> ") == "2":
+    while enemigo.esta_vivo() and main_character.esta_vivo():
+      main_character.atacar(enemigo)
+      if enemigo.esta_vivo():
+        enemigo.atacar(main_character)
+    print("Fin de combate")
+  
+  main_character.atributos()
 
 def input_int(text):
   try:
